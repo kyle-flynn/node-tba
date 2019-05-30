@@ -72,7 +72,7 @@ class TBAProvider {
 
   public getTeamEventsByYear(teamKey: string, year: number): Promise<EventSimple[]> {
     return new Promise<any>((resolve, reject) => {
-      this.get(`/team/frc${teamKey}/events/${year}`).then((response: IAPIResponse) => {
+      this.get(`/team/${teamKey}/events/${year}`).then((response: IAPIResponse) => {
         resolve(response.response.map((eventJSON: any) => new EventSimple().fromJSON(eventJSON)));
       }).catch((error: IAPIResponse) => reject(error.error));
     });
@@ -80,7 +80,7 @@ class TBAProvider {
 
   public getTeamMatchesByEvent(teamKey: string, eventKey: string): Promise<Match[]> {
     return new Promise<Match[]>((resolve, reject) => {
-      this.get(`/team/frc${teamKey}/event/${eventKey}/matches`).then((response: IAPIResponse) => {
+      this.get(`/team/${teamKey}/event/${eventKey}/matches`).then((response: IAPIResponse) => {
         resolve(response.response.map((matchJSON: any) => new Match().fromJSON(matchJSON)));
       }).catch((error: IAPIResponse) => reject(error.error));
     });
