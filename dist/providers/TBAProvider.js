@@ -60,7 +60,7 @@ var TBAProvider = (function () {
     TBAProvider.prototype.getTeamEventsByYear = function (teamKey, year) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.get("/team/frc" + teamKey + "/events/" + year).then(function (response) {
+            _this.get("/team/" + teamKey + "/events/" + year).then(function (response) {
                 resolve(response.response.map(function (eventJSON) { return new EventSimple_1.default().fromJSON(eventJSON); }));
             }).catch(function (error) { return reject(error.error); });
         });
@@ -68,7 +68,7 @@ var TBAProvider = (function () {
     TBAProvider.prototype.getTeamMatchesByEvent = function (teamKey, eventKey) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.get("/team/frc" + teamKey + "/event/" + eventKey + "/matches").then(function (response) {
+            _this.get("/team/" + teamKey + "/event/" + eventKey + "/matches").then(function (response) {
                 resolve(response.response.map(function (matchJSON) { return new Match_1.default().fromJSON(matchJSON); }));
             }).catch(function (error) { return reject(error.error); });
         });
